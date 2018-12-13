@@ -7,3 +7,4 @@ install:
   - npm ci
 scripts:
   - npm test
+  - node bin/faceapp.js -l
