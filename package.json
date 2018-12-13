@@ -1,15 +1,16 @@
 {
-  "name": "faceapp",
+  "name": "faceappjs",
   "version": "0.4.7",
   "description": "JavaScript API wrapper for the FaceApp tool for Android and iOS",
   "main": "src/index.js",
   "bin": "bin/faceapp.js",
   "scripts": {
-    "test": "eslint --color src/"
+    "pretest": "eslint --color src/",
+    "test": "node bin/faceapp.js -l"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lolPants/faceapp.js.git"
+    "url": "git+https://github.com/TheEssemCraft/faceapp.js.git"
   },
   "keywords": [
     "faceapp",
@@ -25,12 +26,12 @@
     "neural",
     "network"
   ],
-  "author": "Jack Baron <me@jackbaron.com> (https://www.jackbaron.com)",
+  "author": ["Jack Baron <me@jackbaron.com> (https://www.jackbaron.com)", "Essem <smswessem@gmail.com> (https://essem.space)"],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lolPants/faceapp.js/issues"
+    "url": "https://github.com/TheEssemCraft/faceapp.js/issues"
   },
-  "homepage": "https://github.com/lolPants/faceapp.js#readme",
+  "homepage": "https://github.com/TheEssemCraft/faceapp.js#readme",
   "devDependencies": {
     "eslint": "^5.9.0"
   },
