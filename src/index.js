@@ -3,6 +3,7 @@ const { generateDeviceID, API_BASE_URL, API_USER_AGENT, TEST_IMAGE_URL } = requi
 
 // Package Dependencies
 const superagent = require('superagent')
+const storage = require('node-persist')
 
 /**
  * @typedef {Object} Filter
@@ -37,11 +38,16 @@ const getAvailableFilters = async file => {
     token_type: 'fcm',
   }
 
-  await superagent.post('https://api.faceapp.io/api/v3.0/devices/register')
-    .set('Content-Type', 'application/json')
-    .set('User-Agent', API_USER_AGENT)
-    .set('X-FaceApp-DeviceID', deviceID)
-    .send(JSON.stringify(payload))
+  await storage.init()
+
+  if (await storage.getItem('isRegistered') === undefined) {
+    await superagent.post('https://api.faceapp.io/api/v3.0/devices/register')
+      .set('Content-Type', 'application/json')
+      .set('User-Agent', API_USER_AGENT)
+      .set('X-FaceApp-DeviceID', deviceID)
+      .send(JSON.stringify(payload))
+    await storage.setItem('isRegistered', true)
+  }
 
   const { body } = await superagent.post(`${API_BASE_URL}/api/v3.1/photos`)
     .set('User-Agent', API_USER_AGENT)
